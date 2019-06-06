@@ -25,6 +25,14 @@ module.exports = class Instance extends EventEmitter {
         self._aliveCount = void 0;
         self._rqCount = 0;
         self._useragent = useragent.generateBrowser();
+        if (config.hasOwnProperty('device')) {
+            if (config.device === 'desktop') {
+                self._useragent = useragent.getDesktopUserAgent();
+            }
+            else if (config.device === 'mobile') {
+                self._useragent = useragent.getMobileUserAgent();
+            }
+        }
 
 
         // Check is alive
@@ -139,7 +147,7 @@ module.exports = class Instance extends EventEmitter {
                 else {
                     const delay = Math.floor(
                         self._config.autorestart.minDelay +
-                        Math.random() * (self._config.autorestart.maxDelay - self._config.autorestart.minDelay)
+                        Math.random() * (self._config.autorestart.maxDelay - self._config.autorestart.minDelay),
                     );
 
                     winston.debug('[Instance/%s] autorestart cancelled (only 1 instance). restarting in %d secs...', self._model.name, delay);

@@ -2,6 +2,8 @@
 
 module.exports = {
     generateBrowser,
+    getDesktopUserAgent,
+    getMobileUserAgent
 };
 
 
@@ -38,4 +40,12 @@ const browsersUA = [
 
 function generateBrowser() {
     return browsersUA[Math.floor(Math.random() * browsersUA.length)];
+}
+
+function getDesktopUserAgent() {
+    return 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36';
+}
+
+function getMobileUserAgent() {
+    return 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/69.0.3497.105 Mobile/15E148 Safari/605.1';
 }
