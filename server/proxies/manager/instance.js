@@ -25,14 +25,6 @@ module.exports = class Instance extends EventEmitter {
         self._aliveCount = void 0;
         self._rqCount = 0;
         self._useragent = useragent.generateBrowser();
-        if (config.hasOwnProperty('device')) {
-            if (config.device === 'desktop') {
-                self._useragent = useragent.getDesktopUserAgent();
-            }
-            else if (config.device === 'mobile') {
-                self._useragent = useragent.getMobileUserAgent();
-            }
-        }
 
 
         // Check is alive
@@ -220,7 +212,7 @@ module.exports = class Instance extends EventEmitter {
 
 
     updateRequestHeaders(headers) {
-        headers['user-agent'] = this._useragent;
+        // headers['user-agent'] = this._useragent;
 
         if (this._config.addProxyNameInRequest) {
             headers['x-cache-proxyname'] = this.name;
